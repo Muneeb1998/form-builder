@@ -12,7 +12,7 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/css/app.css', 'resources/js/app.js','node_modules/boxicons/css/boxicons.min.css'])
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
@@ -26,9 +26,8 @@
                     </div>
                 </header>
             @endif
-
             <!-- Page Content -->
-            <main>
+             <main class="mx-auto max-w-6xl px-8 py-10 {{ $adiClass ?? '' }}">
                 {{ $slot }}
             </main>
         </div>

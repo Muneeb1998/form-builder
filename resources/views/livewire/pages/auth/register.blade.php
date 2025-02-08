@@ -1,88 +1,61 @@
-<?php
+<div class="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Register</h2>
 
-use App\Models\User;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
-use Livewire\Attributes\Layout;
-use Livewire\Volt\Component;
+    @if (session()->has('success'))
+    <div class="p-2 mb-4 text-green-600 bg-green-200 rounded">
+        {{ session('success') }}
+    </div>
+    @endif
 
-new #[Layout('layouts.guest')] class extends Component
-{
-    public string $name = '';
-    public string $email = '';
-    public string $password = '';
-    public string $password_confirmation = '';
-
-    /**
-     * Handle an incoming registration request.
-     */
-    public function register(): void
-    {
-        $validated = $this->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
-        ]);
-
-        $validated['password'] = Hash::make($validated['password']);
-
-        event(new Registered($user = User::create($validated)));
-
-        Auth::login($user);
-
-        $this->redirect(route('dashboard', absolute: false), navigate: true);
-    }
-}; ?>
-
-<div>
-    <form wire:submit="register">
-        <!-- Name -->
+    <form wire:submit.prevent="register" x-data="{ showPassword: false }" class="space-y-4">
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input wire:model="name" id="name" class="block mt-1 w-full" type="text" name="name" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            <label class="block text-gray-700">First Name (Optional)</label>
+            <input type="text" wire:model="first_name" class="w-full border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+            @error('first_name') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="email" name="email" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <div>
+            <label class="block text-gray-700">Last Name <span class="text-red-500">*</span></label>
+            <input type="text" wire:model="last_name" required class="w-full border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+            @error('last_name') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input wire:model="password" id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <div>
+            <label class="block text-gray-700">Email <span class="text-red-500">*</span></label>
+            <input type="email" wire:model="email" required class="w-full border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+            @error('email') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input wire:model="password_confirmation" id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+        <div>
+            <label class="block text-gray-700">Password <span class="text-red-500">*</span></label>
+            <div class="relative">
+                <input :type="showPassword ? 'text' : 'password'" wire:model="password" required class="w-full border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                <button type="button" class="absolute right-3 top-2 text-gray-500" @click="showPassword = !showPassword">
+                    <i :class="showPassword ? 'bx bxs-lock-open-alt' : 'bx bxs-lock-alt'"></i>
+                </button>
+            </div>
+            @error('password') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+        </div>
+        <div>
+            <label class="block text-gray-700">Confirm Password <span class="text-red-500">*</span></label>
+            <div class="relative">
+                <input :type="showPassword ? 'text' : 'password'" wire:model="password_confirmation" required class="w-full border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                <button type="button" class="absolute right-3 top-2 text-gray-500" @click="showPassword = !showPassword">
+                    <i :class="showPassword ? 'bx bxs-lock-open-alt' : 'bx bxs-lock-alt'"></i>
+                </button>
+            </div>
+            @error('password_confirmation') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}" wire:navigate>
-                {{ __('Already registered?') }}
+        <div class="!mt-4 text-right">
+            <a href="{{ route('login') }}" class="text-sm hover:underline">
+                Already have an account?
             </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
+        </div>
+        <div>
+            <button type="submit" class="w-full bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
+                Register
+            </button>
         </div>
     </form>
 </div>
