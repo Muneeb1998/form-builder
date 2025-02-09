@@ -13,7 +13,7 @@
         <input type="checkbox"
             wire:model.live="form_label"
             class="sr-only peer">
-        <div class="relative w-11 h-6 bg-gray-300 peer-checked:bg-blue-600 rounded-full transition-all">
+        <div class="relative w-11 h-6 bg-gray-300 peer-checked:bg-gray-900 rounded-full transition-all">
             <div class="absolute top-[2px] start-[2px] w-5 h-5 bg-white border rounded-full transition-transform peer-checked:translate-x-full"></div>
         </div>
     </div>

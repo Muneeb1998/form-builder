@@ -36,8 +36,8 @@ class Profile extends Component
         $this->profile_lang = $user->profile_lang ?? 'de';
         $this->form_label = $user->form_label ?? false;
         $this->custom_fields = array_values(is_array($user->custom_fields)
-        ? $user->custom_fields
-        : json_decode($user->custom_fields, true) ?? []);
+            ? $user->custom_fields
+            : json_decode($user->custom_fields, true) ?? []);
     }
 
     public function handleSettingsUpdate($field, $value)

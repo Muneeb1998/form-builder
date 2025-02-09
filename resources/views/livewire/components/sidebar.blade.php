@@ -4,8 +4,8 @@
         <span>{{ __('words.form_builder') }}</span>
     </h2>
     <nav class="mt-6">
-        <a href="#" class="block p-2 hover:bg-gray-700 rounded"><i class='bx bxs-user'></i> {{ __('words.my_profile') }}</a>
-        <a href="#" class="block p-2 hover:bg-gray-700 rounded"><i class='bx bxs-help-circle' ></i> {{ __('words.help_and_support') }}</a>
+        <a href="{{ route('profile') }}" class="block p-2 hover:bg-gray-700 rounded"><i class='bx bxs-user'></i> {{ __('words.profile') }}</a>
+        <a href="{{ route('contact') }}" class="block p-2 hover:bg-gray-700 rounded"><i class='bx bxs-help-circle' ></i> {{ __('words.help_and_support') }}</a>
         <a href="logout" class="block p-2 hover:bg-gray-700 rounded"><i class='bx bx-log-out' ></i> {{ __('words.logout') }}</a>
     </nav>
 </aside>

@@ -14,7 +14,7 @@
 
     <form wire:submit.prevent="save" x-data="{ showPassword: false }" class="space-y-4">
         <div class="flex justify-between items-center">
-            <h1 class="text-2xl font-semibold">{{ __('Profile') }}</h1>
+            <h1 class="text-2xl font-semibold"><i class='bx bxs-user'></i> {{ __('words.profile') }}</h1>
         </div>
 
         <div class="flex mt-6 space-x-6">
@@ -52,7 +52,7 @@
                     :custom_fields="$fieldDropdown['custom_fields']"
                     wire:key="form-custom-{{ now()->timestamp }}" />
                 <div class="mt-6 text-center">
-                    <button class="bg-blue-600 text-white py-2.5 px-[60px] py-2 rounded">{{ __('words.save') }}</button>
+                    <button class="bg-gray-900 text-white py-2.5 px-[60px] py-2 rounded">{{ __('words.save') }}</button>
                 </div>
             </div>
         </div>

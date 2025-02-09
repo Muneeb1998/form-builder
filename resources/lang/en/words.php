@@ -13,12 +13,14 @@ return [
     'already_account' => 'Do you already have an account?',
     'register' => 'Register',
     'form_builder' => 'Form builder',
-    'my_profile' => 'My profile',
+    'profile' => 'Profile',
     'help_and_support' => 'Help and support',
     'logout' => 'Logout',
     'not_registered' => 'Not registered?',
     'create_account' => 'Create account',
     'login' => 'Login',
     'profile_language' => 'Profile language',
-    'add_new_field' => 'Add new field'
+    'add_new_field' => 'Add new field',
+    'subject' => 'Subject',
+    'message' => 'Message'
 ];
