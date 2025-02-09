@@ -5,6 +5,7 @@ namespace App\Livewire\Pages\Auth;
 use Livewire\Component;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\App;
 use Livewire\Attributes\Layout;
 
 #[Layout('layouts.app')]
@@ -33,7 +34,8 @@ class Registration extends Component
         ]);
 
         session()->flash('success', 'Registration successful!');
-        $this->reset(); // Clear the form fields
+        $this->reset();
+        return redirect()->route('/');
     }
 
     public function render()

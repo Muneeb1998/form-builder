@@ -16,7 +16,7 @@ class Login extends Component
     {
         $this->form->authenticate();
 
-        return redirect()->route('dashboard'); // Redirect after successful login
+        return redirect('/');
     }
 
     public function render()

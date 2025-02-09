@@ -2,24 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Livewire\Pages\Dashboard\Profile;
 use Illuminate\Support\Facades\Auth;
 
-
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::view('/dashboard', 'dashboard')->name('dashboard');
-
-    Route::post('/logout', function (Request $request) {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+    Route::get('/', Profile::class)->name('profile');
+    Route::get('profile', Profile::class)->name('profile');
+    Route::get('logout', function (Request $request) {
+        Auth::guard('web')->logout();
         return redirect('/');
     })->name('logout');
 });
-
-Route::view('profile', 'profile')
-    ->middleware(['auth'])
-    ->name('profile');
-Route::get('/register', function () {
-    return view('register');
-})->name('register');
 require __DIR__ . '/auth.php';
