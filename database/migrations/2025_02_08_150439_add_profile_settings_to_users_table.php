@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('font')->default('Roboto'); // Default font
-            $table->string('background_color')->default('white'); // Default background color
-            $table->boolean('form_label')->default(true); // Default form label state
+            $table->string('font')->default('Roboto');
+            $table->string('background_color')->default('#fff');
+            $table->boolean('form_label')->default(false);
         });
     }
 

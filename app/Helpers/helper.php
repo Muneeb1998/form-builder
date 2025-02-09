@@ -7,3 +7,14 @@ if (! function_exists('locale_route')) {
         return route($name, $parameters, $absolute);
     }
 }
+if (! function_exists('set_lang')) {
+    function set_lang()
+    {
+        $oApp = new \Illuminate\Support\Facades\App;
+        $oAuth = new \Illuminate\Support\Facades\Auth;
+        $user = $oAuth::user();
+        if ($user) {
+            $oApp::setLocale($user->profile_lang);
+        }
+    }
+}

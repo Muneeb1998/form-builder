@@ -11,7 +11,11 @@
 
 <body class="font-sans antialiased">
     <div>
-        {{ $slot }}
+        <div class="flex h-screen sm:flex-row flex-col">
+            <!-- Sidebar -->
+            <livewire:components.sidebar />
+            {{ $slot }}
+        </div>
     </div>
     @livewireScripts
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>

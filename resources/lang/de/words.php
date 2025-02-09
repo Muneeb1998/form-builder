@@ -19,4 +19,6 @@ return [
     'not_registered' => 'Noch nicht registriert?',
     'create_account' => 'Konto erstellen',
     'login' => 'Anmelden',
+    'profile_language' => 'Profilsprache',
+    'add_new_field' => 'Neues Feld hinzufügen'
 ];

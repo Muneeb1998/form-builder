@@ -19,7 +19,7 @@ class User extends Authenticatable
      */
     const UPDATED_AT = null;
 
-    protected $fillable = ['first_name', 'last_name', 'email', 'password', 'font', 'background_color', 'form_label'];
+    protected $fillable = ['first_name', 'last_name', 'email', 'password', 'font', 'background_color', 'form_label', 'custom_fields','profile_lang'];
 
 
     /**
@@ -42,6 +42,7 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'custom_fields' => 'array',
         ];
     }
 }
