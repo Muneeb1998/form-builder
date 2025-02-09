@@ -35,7 +35,7 @@ class Registration extends Component
 
         session()->flash('success', 'Registration successful!');
         $this->reset();
-        return redirect()->route('/');
+        return redirect('/');
     }
 
     public function render()
